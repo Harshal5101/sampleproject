@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NAZARIO - Premium Eyewear Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1A1A1A",
+              secondary: "#C2B280",
+              accent: "#E8CFCB",
+              cream: "#FAF3E0",
+              textDark: "#333333",
+              textLight: "#666666",
+            },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Montserrat', sans-serif;
+      }
+      .playfair {
+      font-family: 'Playfair Display', serif;
+      }
+      .search-overlay {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      }
+      .search-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      }
+      .nav-link {
+      position: relative;
+      }
+      .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: #1A1A1A;
+      transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+      width: 100%;
+      }
+      .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 9px;
+      background-color: #E8CFCB;
+      color: #1A1A1A;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <header class="fixed w-full bg-white/95 backdrop-blur-sm z-50">
+      <div class="max-w-7xl mx-auto px-4 py-4">
+        <nav class="flex items-center justify-between">
+          <a href="/" class="text-3xl font-bold tracking-wider flex-shrink-0"
+            >NAZARIO</a
+          >
+          <div class="flex-1 flex items-center justify-center space-x-12 ml-16">
+            <a
+              href="#"
+              class="nav-link text-sm font-medium hover:text-primary transition-colors"
+              >HOME</a
+            >
+            <a
+              href="#"
+              class="nav-link text-sm font-medium hover:text-primary transition-colors"
+              >SUNGLASSES</a
+            >
+            <a
+              href="#"
+              class="nav-link text-sm font-medium hover:text-primary transition-colors"
+              >OPTICAL</a
+            >
+            <a
+              href="#"
+              class="nav-link text-sm font-medium hover:text-primary transition-colors"
+              >COLLECTIONS</a
+            >
+            <a
+              href="#"
+              class="nav-link text-sm font-medium hover:text-primary transition-colors"
+              >ABOUT</a
+            >
+          </div>
+          <div class="flex items-center space-x-6">
+            <button
+              class="w-10 h-10 flex items-center justify-center"
+              onclick="toggleSearch()"
+            >
+              <i class="ri-search-line text-xl"></i>
+            </button>
+            <button class="w-10 h-10 flex items-center justify-center">
+              <i class="ri-user-line text-xl"></i>
+            </button>
+            <button class="w-10 h-10 flex items-center justify-center">
+              <i class="ri-heart-line text-xl"></i>
+            </button>
+            <button class="w-10 h-10 flex items-center justify-center relative">
+              <i class="ri-shopping-bag-line text-xl"></i>
+              <span class="cart-badge">2</span>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div
+      class="search-overlay fixed inset-0 bg-white/95 backdrop-blur-sm z-50 flex items-start pt-32"
+    >
+      <div class="max-w-3xl mx-auto w-full px-4">
+        <div class="relative">
+          <input
+            type="text"
+            placeholder="Search for products..."
+            class="w-full h-16 bg-transparent border-b-2 border-primary text-xl focus:outline-none"
+          />
+          <button
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center"
+            onclick="toggleSearch()"
+          >
+            <i class="ri-close-line text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <main>
+      <section class="min-h-screen pt-32 pb-16">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="grid grid-cols-2 gap-16 items-center">
+            <div>
+              <span
+                class="text-primary text-sm tracking-widest mb-4 inline-block"
+                >PREMIUM EYEWEAR</span
+              >
+              <h1 class="playfair text-6xl font-medium leading-tight mb-8">
+                Redefine Your Vision with Nazario
+              </h1>
+              <p class="text-lg text-textLight mb-12 max-w-lg">
+                Discover our meticulously crafted collection of luxury eyewear,
+                where timeless elegance meets contemporary design.
+              </p>
+              <div class="flex space-x-6">
+                <button
+                  class="bg-primary text-white px-10 py-4 text-sm font-medium tracking-wider !rounded-button hover:bg-opacity-90 transition-all"
+                >
+                  SHOP NOW
+                </button>
+                <button
+                  class="border-2 border-primary text-primary px-10 py-4 text-sm font-medium tracking-wider !rounded-button hover:bg-primary hover:text-white transition-all"
+                >
+                  BOOK APPOINTMENT
+                </button>
+              </div>
+            </div>
+            <div class="relative">
+              <img
+                src="amogh-designs-3.jpg"
+                alt="Featured Eyewear"
+                class="w-full rounded-2xl"
+              />
+              <div
+                class="absolute -bottom-8 -left-8 bg-white p-6 rounded-lg shadow-xl"
+              >
+                <p class="text-sm font-medium mb-2">New Collection</p>
+                <p class="playfair text-2xl">Summer 2025</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-24 bg-cream/10">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="flex items-end justify-between mb-16">
+            <div>
+              <span
+                class="text-primary text-sm tracking-widest mb-4 inline-block"
+                >CURATED SELECTION</span
+              >
+              <h2 class="playfair text-4xl">Featured Collections</h2>
+            </div>
+            <a
+              href="#"
+              class="text-primary hover:opacity-70 transition-opacity flex items-center gap-2"
+            >
+              View All Collections
+              <i class="ri-arrow-right-line"></i>
+            </a>
+          </div>
+          <div class="grid grid-cols-3 gap-12">
+            <div class="group relative overflow-hidden rounded-lg">
+              <div class="aspect-[3/4] overflow-hidden">
+                <img
+                  src="sunglases.webp" \\change image
+                  alt="Sunglasses Collection"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div
+                class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+              >
+                <div
+                  class="text-center translate-y-4 group-hover:translate-y-0 transition-transform"
+                >
+                  <h3 class="text-white text-2xl mb-4">Sunglasses</h3>
+                  <button
+                    class="bg-white text-primary px-6 py-3 text-sm !rounded-button"
+                  >
+                    View Collection
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="group relative overflow-hidden rounded-lg">
+              <div class="aspect-[3/4] overflow-hidden">
+                <img
+                  src="optical.jpg" \\change image
+                  alt="Optical Collection"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div
+                class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+              >
+                <div
+                  class="text-center translate-y-4 group-hover:translate-y-0 transition-transform"
+                >
+                  <h3 class="text-white text-2xl mb-4">Optical</h3>
+                  <button
+                    class="bg-white text-primary px-6 py-3 text-sm !rounded-button"
+                  >
+                    View Collection
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="group relative overflow-hidden rounded-lg">
+              <div class="aspect-[3/4] overflow-hidden">
+                <img
+                  src="limited.webp" \\change image
+                  alt="Limited Edition"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div
+                class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+              >
+                <div
+                  class="text-center translate-y-4 group-hover:translate-y-0 transition-transform"
+                >
+                  <h3 class="text-white text-2xl mb-4">Limited Edition</h3>
+                  <button
+                    class="bg-white text-primary px-6 py-3 text-sm !rounded-button"
+                  >
+                    View Collection
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="flex items-end justify-between mb-16">
+            <div>
+              <span
+                class="text-primary text-sm tracking-widest mb-4 inline-block"
+                >MOST LOVED</span
+              >
+              <h2 class="playfair text-4xl">Best Sellers</h2>
+            </div>
+            <div class="flex items-center gap-4">
+              <button
+                class="w-12 h-12 border-2 border-primary !rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+              >
+                <i class="ri-arrow-left-s-line text-2xl"></i>
+              </button>
+              <button
+                class="w-12 h-12 border-2 border-primary !rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+              >
+                <i class="ri-arrow-right-s-line text-2xl"></i>
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 gap-8">
+            <div class="group">
+              <div
+                class="relative aspect-square mb-4 bg-white rounded-lg overflow-hidden"
+              >
+                <img
+                  src="aviator.webp" \\change image
+                  alt="Aviator Classic"
+                  class="w-full h-full object-cover"
+                />
+                <button
+                  class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center"
+                >
+                  <i class="ri-heart-line"></i>
+                </button>
+              </div>
+              <h3 class="text-lg mb-2">Aviator Classic</h3>
+              <p class="text-textLight mb-4">$295.00</p>
+              <button
+                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all"
+              >
+                Add to Cart
+              </button>
+            </div>
+            <div class="group">
+              <div
+                class="relative aspect-square mb-4 bg-white rounded-lg overflow-hidden"
+              >
+                <img
+                  src="Ryan-Gosling-Glasses.jpg" \\change image
+                  alt="Round Optical"
+                  class="w-full h-full object-cover"
+                />
+                <button
+                  class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center"
+                >
+                  <i class="ri-heart-line"></i>
+                </button>
+              </div>
+              <h3 class="text-lg mb-2">Round Optical</h3>
+              <p class="text-textLight mb-4">$245.00</p>
+              <button
+                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all"
+              >
+                Add to Cart
+              </button>
+            </div>
+            <div class="group">
+              <div
+                class="relative aspect-square mb-4 bg-white rounded-lg overflow-hidden"
+              >
+                <img
+                  src="cat.jpg" \\change image
+                  alt="Cat-Eye Elite"
+                  class="w-full h-full object-cover"
+                />
+                <button
+                  class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center"
+                >
+                  <i class="ri-heart-line"></i>
+                </button>
+              </div>
+              <h3 class="text-lg mb-2">Cat-Eye Elite</h3>
+              <p class="text-textLight mb-4">$275.00</p>
+              <button
+                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all"
+              >
+                Add to Cart
+              </button>
+            </div>
+            <div class="group">
+              <div
+                class="relative aspect-square mb-4 bg-white rounded-lg overflow-hidden"
+              >
+                <img
+                  src="rectangle.webp" \\change image
+                  alt="Rectangle Modern"
+                  class="w-full h-full object-cover"
+                />
+                <button
+                  class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center"
+                >
+                  <i class="ri-heart-line"></i>
+                </button>
+              </div>
+              <h3 class="text-lg mb-2">Rectangle Modern</h3>
+              <p class="text-textLight mb-4">$265.00</p>
+              <button
+                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="relative py-32"
+        style="background-image: url('amogh-designs-3.jpg'); background-size: cover; background-position: center;" \\change image
+      >
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="relative max-w-7xl mx-auto px-4 text-center text-white">
+          <h2 class="playfair text-4xl mb-6">Visit Our Flagship Store</h2>
+          <p class="max-w-2xl mx-auto mb-8">
+            Experience our collection in person at our flagship store. Our
+            eyewear specialists are ready to help you find your perfect pair.
+          </p>
+          <button
+            class="bg-white text-primary px-8 py-4 text-sm font-medium tracking-wider !rounded-button hover:bg-opacity-90 transition-all"
+          >
+            BOOK AN APPOINTMENT
+          </button>
+        </div>
+      </section>
+      <section class="py-24 bg-cream/10">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-primary text-sm tracking-widest mb-4 inline-block"
+              >TESTIMONIALS</span
+            >
+            <h2 class="playfair text-4xl mb-6">What Our Clients Say</h2>
+            <p class="text-textLight">
+              Discover why our customers choose NAZARIO for their premium
+              eyewear needs.
+            </p>
+          </div>
+          <div class="grid grid-cols-3 gap-8">
+            <div class="bg-cream/10 p-8 rounded-lg">
+              <div class="flex items-center mb-4">
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+              </div>
+              <p class="text-textLight mb-6">
+                "Exceptional quality and style. The attention to detail in these
+                frames is remarkable. Very satisfied with my purchase."
+              </p>
+              <p class="font-medium">Harshal Belulkar</p>
+              <p class="text-sm text-textLight">Verified Buyer</p>
+            </div>
+            <div class="bg-cream/10 p-8 rounded-lg">
+              <div class="flex items-center mb-4">
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+              </div>
+              <p class="text-textLight mb-6">
+                "The customer service was outstanding, and the frames are
+                absolutely beautiful. Worth every penny."
+              </p>
+              <p class="font-medium">gaurav sharma</p>
+              <p class="text-sm text-textLight">Verified Buyer</p>
+            </div>
+            <div class="bg-cream/10 p-8 rounded-lg">
+              <div class="flex items-center mb-4">
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+                <i class="ri-star-fill text-secondary"></i>
+              </div>
+              <p class="text-textLight mb-6">
+                "These frames are not just eyewear, they're a statement piece.
+                The quality is unmatched."
+              </p>
+              <p class="font-medium">akash jadhav</p>
+              <p class="text-sm text-textLight">Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="bg-primary text-white py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-4 gap-8 mb-16">
+          <div>
+            <h3 class="text-xl mb-6">About NAZARIO</h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Crafting premium eyewear since 2015. Each piece is a testament to
+              our commitment to quality and style.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl mb-6">Quick Links</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-white transition-colors"
+                  >Collections</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-white transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-white transition-colors"
+                  >Store Locator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-white transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl mb-6">Customer Care</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-white transition-colors"
+                  >Shipping & Returns</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-white transition-colors"
+                  >Care Guide</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-white transition-colors"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-white transition-colors"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl mb-6">Newsletter</h3>
+            <p class="text-white/70 text-sm mb-4">
+              Subscribe to receive updates, access to exclusive deals, and more.
+            </p>
+            <div class="flex">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="flex-1 bg-white/10 border-none px-4 py-2 text-sm !rounded-l-button focus:outline-none focus:ring-2 focus:ring-white/20"
+              />
+              <button
+                class="bg-white text-primary px-6 py-2 text-sm font-medium !rounded-r-button hover:bg-opacity-90 transition-all whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-between pt-8 border-t border-white/10"
+        >
+          <p class="text-white/70 text-sm">
+            © 2025 NAZARIO. All rights reserved.
+          </p>
+          <div class="flex items-center space-x-6">
+            <a
+              href="#"
+              class="text-white/70 hover:text-white transition-colors"
+            >
+              <i class="ri-instagram-line text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white/70 hover:text-white transition-colors"
+            >
+              <i class="ri-facebook-line text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white/70 hover:text-white transition-colors"
+            >
+              <i class="ri-twitter-x-line text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white/70 hover:text-white transition-colors"
+            >
+              <i class="ri-pinterest-line text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchOverlay = document.querySelector(".search-overlay");
+        window.toggleSearch = function () {
+          searchOverlay.classList.toggle("active");
+          if (searchOverlay.classList.contains("active")) {
+            document.body.style.overflow = "hidden";
+          } else {
+            document.body.style.overflow = "";
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
